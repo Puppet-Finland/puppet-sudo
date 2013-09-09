@@ -10,7 +10,7 @@ class sudo::params {
             $package_name = 'sudo'
             $admingroup = 'root'
             $sudoers_d = '/etc/sudoers.d'
-            $sudogroup = 'sudo'
+            $sudogroup = 'wheel'
         }
         'Debian': {
             $package_name = 'sudo'
