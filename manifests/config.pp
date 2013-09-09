@@ -17,6 +17,6 @@ class sudo::config {
 
     # Allow users in the somewhat OS-specific sudo group to run commands as root
     sudo::directive { 'sudogroup':
-        content => "%${::sudo::params::sudogroup}   ALL=(ALL:ALL) ALL\n",
+        content => "# File created by Puppet, do not modify manually!\n%${::sudo::params::sudogroup}   ALL=(ALL:ALL) ALL\n",
     }
 }
