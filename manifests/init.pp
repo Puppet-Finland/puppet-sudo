@@ -25,7 +25,7 @@
 class sudo {
 
 # Rationale for this is explained in init.pp of the sshd module
-if hiera('manage_sudo') != 'false' {
+if hiera('manage_sudo', 'true') != 'false' {
     include sudo::install
     include sudo::config
 }
