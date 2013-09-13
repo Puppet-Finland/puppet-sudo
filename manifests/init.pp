@@ -23,6 +23,10 @@
 # See file LICENSE for details
 #
 class sudo {
+
+# Rationale for this is explained in init.pp of the sshd module
+if hiera('manage_sudo') != 'false' {
     include sudo::install
     include sudo::config
+}
 }
