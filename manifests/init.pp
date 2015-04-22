@@ -5,7 +5,11 @@
 #
 # == Parameters
 #
-# None at the moment
+# [*manage*]
+#   Whether to manage sudo with Puppet or not. Valid values are 'yes' (default) 
+#   and 'no'.
+# [*directives*]
+#   A hash of sudo::directive resources to realize.
 #
 # == Examples
 #
@@ -23,11 +27,18 @@
 #
 # BSD-license. See file LICENSE for details.
 #
-class sudo {
+class sudo
+(
+    $manage = 'yes',
+    $directives = {}
+)
+{
 
-# Rationale for this is explained in init.pp of the sshd module
-if hiera('manage_sudo', 'true') != 'false' {
-    include sudo::install
-    include sudo::config
+if $manage == 'yes' {
+    include ::sudo::install
+
+    class { '::sudo::config':
+        directives => $directives,
+    }
 }
 }

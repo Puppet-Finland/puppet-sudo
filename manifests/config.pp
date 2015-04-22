@@ -13,10 +13,18 @@
 # More sudo directives can be added to the node definitions using the 
 # sudo::directive define.
 #
-class sudo::config {
+class sudo::config
+(
+    $directives
+
+) inherits sudo::params
+{
 
     # Allow users in the somewhat OS-specific sudo group to run commands as root
     sudo::directive { 'sudogroup':
         content => "# File created by Puppet, do not modify manually!\n%${::sudo::params::sudogroup}   ALL=(ALL:ALL) ALL\n",
     }
+
+    # Create additional sudo directives if requested
+    create_resources('sudo::directive', $directives)
 }

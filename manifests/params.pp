@@ -5,16 +5,16 @@
 #
 class sudo::params {
 
+    include ::os::params
+
     case $::osfamily {
         'RedHat': {
             $package_name = 'sudo'
-            $admingroup = 'root'
             $sudoers_d = '/etc/sudoers.d'
             $sudogroup = 'wheel'
         }
         'Debian': {
             $package_name = 'sudo'
-            $admingroup = 'root'
             $sudoers_d = '/etc/sudoers.d'
             $sudogroup = 'sudo'
         }
@@ -25,10 +25,7 @@ class sudo::params {
             $sudogroup = 'wheel'
         }
         default: {
-            $package_name = 'sudo'
-            $admingroup = 'root'
-            $sudoers_d = '/etc/sudoers.d'
-            $sudogroup = 'sudo'
+            fail("Unsupported operatingsystem ${::osfamily}")
         }
     }
 }

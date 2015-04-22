@@ -32,32 +32,36 @@
 #
 # BSD-license. See file LICENSE for details.
 #
-define sudo::directive (
+define sudo::directive
+(
     $ensure  = present,
-    $content = '',
-    $source  = ''
+    $content = undef,
+    $source  = undef
 )
 {
 
-    include sudo::params
+    include ::sudo::params
 
     # sudo skipping file names that contain a "."
     $dname = regsubst($name, '\.', '-', 'G')
 
+    $fragment_content = $content ? {
+        undef   => undef,
+        default => $content,
+    }
+    $fragment_source = $source ? {
+        undef   => undef,
+        default => $source,
+    }
+
     file { "sudoers.d-${dname}":
-        name    => "${::sudo::params::sudoers_d}/${dname}",
         ensure  => $ensure,
-        owner   => root,
-        group   => "${::sudo::params::admingroup}",
-        mode    => 0440,
-        content => $content ? {
-            ""      => undef,
-            default => $content,
-        },
-        source  => $source ? {
-            ""      => undef,
-            default => $source,
-        },
+        name    => "${::sudo::params::sudoers_d}/${dname}",
+        owner   => $::os::params::adminuser,
+        group   => $::os::params::admingroup,
+        mode    => '0440',
+        content => $fragment_content,
+        source  => $fragment_source,
         require => Class['sudo::install'],
     }
 }

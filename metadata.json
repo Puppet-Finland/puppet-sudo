@@ -1,0 +1,12 @@
+{
+  "name": "puppetfinland-sudo",
+  "version": "0.5.1",
+  "author": "Puppet-Finland team",
+  "license": "BSD license",
+  "summary": "Setup sudo",
+  "source": "https://github.com/Puppet-Finland/sudo.git",
+  "project_page": "https://github.com/Puppet-Finland/sudo",
+  "dependencies": [
+    { "name": "puppetfinland/os", "version_requirement": ">= 0.5.6" }
+  ]
+}
