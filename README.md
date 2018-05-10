@@ -5,23 +5,27 @@ A Puppet module for installing and configuring sudo
 
 # Module usage
 
-* [Class: sudo](manifests/init.pp)
-* [Define: sudo::directive](manifests/init.pp)
+Enable users in the default admin group (sudo or wheel) to run commands as root:
 
-# Dependencies
+    include ::sudo
 
-See [metadata.json](metadata.json).
+Add an additional one-liner sudo directive (note the linefeed at the end):
 
-# Operating system support
+    sudo::directive { 'staff':
+      content => '%staff    ALL=(ALL:ALL) ALL\n',
+    }
 
-This module has been tested on
+Add a fragment based on an ERB template:
 
-* Ubuntu 10.04, 12.04, 14.04
-* Debian 7 and 8
-* CentOS 6 and 7
-* FreeBSD 9 and 10
+    sudo::directive { 'sudorules':
+      content => template('profile/sudorules.erb'),
+    }
 
-All UNIXy operating systems should work out of the box or with small 
-modifications.
+Add a fragment from a static file:
 
-For details see [params.pp](manifests/params.pp).
+    sudo::directive { 'sudorules':
+      source => 'puppet:///profile/sudorules',
+    }
+
+For details refer to [init.pp](manifests/init.pp) 
+and [directive.pp](manifests/directive.pp)
