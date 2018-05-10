@@ -24,7 +24,7 @@ Add a fragment based on an ERB template:
 Add a fragment from a static file:
 
     sudo::directive { 'sudorules':
-      source => 'puppet:///profile/sudorules',
+      source => 'puppet:///modules/profile/sudorules',
     }
 
 For details refer to [init.pp](manifests/init.pp) 
