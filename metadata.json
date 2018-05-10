@@ -2,7 +2,7 @@
   "name": "puppetfinland-sudo",
   "version": "0.5.1",
   "author": "Puppet-Finland team",
-  "license": "BSD license",
+  "license": "BSD-2-Clause",
   "summary": "Setup sudo",
   "source": "https://github.com/Puppet-Finland/sudo.git",
   "project_page": "https://github.com/Puppet-Finland/sudo",
