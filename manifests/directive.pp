@@ -34,9 +34,9 @@
 #
 define sudo::directive
 (
-    $ensure  = present,
-    $content = undef,
-    $source  = undef
+    Enum['present','absent'] $ensure  = present,
+    Optional[String]         $content = undef,
+    Optional[String]         $source  = undef
 )
 {
 
