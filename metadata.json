@@ -1,6 +1,6 @@
 {
   "name": "puppetfinland-sudo",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "author": "Puppet-Finland team",
   "summary": "Setup sudo and configure sudo directives",
   "license": "BSD-2-Clause",
